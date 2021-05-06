@@ -1,4 +1,5 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Raw, Repository } from 'typeorm';
+import { isSameDay } from 'date-fns';
 
 import Transaction from '../entities/Transaction';
 import ITransactionsRepository from '@modules/Transaction/repositories/ITransactionsRepository';
@@ -16,11 +17,11 @@ export default class TransactionsRepository implements ITransactionsRepository {
     user_id,
     date,
   }: IFindByDateDTO): Promise<Transaction[]> {
-    const transactions = this.ormRepository.find({
-      where: { user_id, created_at: date },
+    const transactions = await this.ormRepository.find({
+      where: { user_id },
     });
 
-    return transactions;
+    return transactions.filter(t => isSameDay(t.created_at, date));
   }
 
   public async findByUser(user_id: string): Promise<Transaction[]> {

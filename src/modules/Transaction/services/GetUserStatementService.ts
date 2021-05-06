@@ -8,6 +8,7 @@ import ITransactionsRepository from '../repositories/ITransactionsRepository';
 
 interface IRequest {
   user_id: string;
+  date?: Date;
 }
 
 @injectable()
@@ -20,14 +21,25 @@ export default class GetUserStatementService {
     private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute({ user_id }: IRequest): Promise<Transaction[]> {
+  public async execute({ user_id, date }: IRequest): Promise<Transaction[]> {
     const findUser = await this.usersRepository.findByID(user_id);
 
     if (!findUser) {
       throw new AppError('Usuário não encontrado.', 404);
     }
 
-    const transactions = await this.transactionsRepository.findByUser(user_id);
+    let transactions: Transaction[];
+
+    if (date) {
+      transactions = await this.transactionsRepository.findByDate({
+        user_id,
+        date,
+      });
+
+      return transactions;
+    }
+
+    transactions = await this.transactionsRepository.findByUser(user_id);
 
     return transactions;
   }

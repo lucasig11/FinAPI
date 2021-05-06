@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-
+import { isSameDay } from 'date-fns';
 import Transaction from '../../infra/typeorm/entities/Transaction';
 
 import ITransactionsRepository from '../ITransactionsRepository';
@@ -16,7 +16,8 @@ export default class FakeTransactionsRepository
   }: IFindByDateDTO): Promise<Transaction[]> {
     const user = this.transactionsRepository.filter(
       transaction =>
-        transaction.user_id === user_id && transaction.created_at === date,
+        transaction.user_id === user_id &&
+        isSameDay(transaction.created_at, date),
     );
 
     return user;
@@ -38,7 +39,6 @@ export default class FakeTransactionsRepository
   }: ICreateTransactionDTO): Promise<Transaction> {
     const transaction = new Transaction();
     const date = new Date();
-    date.setHours(0, 0, 0, 0);
 
     Object.assign(transaction, {
       id: v4(),

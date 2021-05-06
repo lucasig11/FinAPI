@@ -26,6 +26,7 @@
     "prettier/prettier": "error",
     "no-useless-constructor": "off",
     "sort-imports":"error",
+    "unified-signatures": false,
     "@typescript-eslint/naming-convention": [
       "error",
       {
