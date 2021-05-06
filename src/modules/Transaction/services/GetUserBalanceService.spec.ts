@@ -49,7 +49,7 @@ describe('GetUserStatement', () => {
   it('should throw an error with non existing account', async () => {
     await expect(
       getBalance.execute({
-        user_id: 'invalid_id',
+        user_id: '4f23faaa-6e7e-4ff5-a6d6-3ed76092afb5',
       }),
     ).rejects.toBeInstanceOf(AppError);
   });

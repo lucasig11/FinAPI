@@ -39,12 +39,13 @@ export default class FakeTransactionsRepository
   }: ICreateTransactionDTO): Promise<Transaction> {
     const transaction = new Transaction();
     const date = new Date();
+    value = Math.abs(value);
 
     Object.assign(transaction, {
       id: v4(),
       user_id,
       created_at: date,
-      value,
+      value: type === 'credit' ? value : -value,
       type,
       description,
     });

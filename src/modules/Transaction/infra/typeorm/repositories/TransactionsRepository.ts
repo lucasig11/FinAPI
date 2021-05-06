@@ -1,4 +1,4 @@
-import { getRepository, Raw, Repository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 import { isSameDay } from 'date-fns';
 
 import Transaction from '../entities/Transaction';
@@ -32,8 +32,18 @@ export default class TransactionsRepository implements ITransactionsRepository {
     return transactions;
   }
 
-  public async create(data: ICreateTransactionDTO): Promise<Transaction> {
-    const transaction = this.ormRepository.create(data);
+  public async create({
+    value,
+    type,
+    ...rest
+  }: ICreateTransactionDTO): Promise<Transaction> {
+    value = Math.abs(value);
+
+    const transaction = this.ormRepository.create({
+      type,
+      value: type === 'credit' ? value : -value,
+      ...rest,
+    });
 
     await this.ormRepository.save(transaction);
 
