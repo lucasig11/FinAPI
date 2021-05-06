@@ -25,6 +25,7 @@
     "class-methods-use-this": "off",
     "prettier/prettier": "error",
     "no-useless-constructor": "off",
+    "sort-imports":"error",
     "@typescript-eslint/naming-convention": [
       "error",
       {
