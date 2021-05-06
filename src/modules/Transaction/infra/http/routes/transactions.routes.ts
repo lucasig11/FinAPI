@@ -39,4 +39,17 @@ transactionsRouter.get(
   statementsController.index,
 );
 
+transactionsRouter.get(
+  '/balance',
+  celebrate(
+    {
+      [Segments.HEADERS]: {
+        user_id: Joi.string().uuid().required(),
+      },
+    },
+    { allowUnknown: true },
+  ),
+  statementsController.show,
+);
+
 export default transactionsRouter;
