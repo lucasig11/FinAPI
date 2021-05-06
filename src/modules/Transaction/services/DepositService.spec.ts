@@ -27,7 +27,7 @@ describe('Deposit', () => {
 
     const transaction = await deposit.execute({
       user_id: newUser.id,
-      amount: 500,
+      value: 500,
       description: 'test deposit',
     });
 
@@ -41,7 +41,7 @@ describe('Deposit', () => {
     await expect(
       deposit.execute({
         user_id: 'invalid_id',
-        amount: 500,
+        value: 500,
         description: 'test deposit',
       }),
     ).rejects.toBeInstanceOf(AppError);

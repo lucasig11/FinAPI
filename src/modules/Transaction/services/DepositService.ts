@@ -1,7 +1,9 @@
-import IUsersRepository from '@modules/User/repositories/IUsersRepository';
-import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
+
+import AppError from '@shared/errors/AppError';
+
 import Transaction from '../infra/typeorm/entities/Transaction';
+import IUsersRepository from '@modules/User/repositories/IUsersRepository';
 import ITransactionsRepository from '../repositories/ITransactionsRepository';
 
 interface IRequest {
