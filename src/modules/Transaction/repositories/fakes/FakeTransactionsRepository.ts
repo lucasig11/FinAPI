@@ -32,7 +32,7 @@ export default class FakeTransactionsRepository
 
   public async create({
     user_id,
-    amount,
+    value,
     type,
     description,
   }: ICreateTransactionDTO): Promise<Transaction> {
@@ -44,7 +44,7 @@ export default class FakeTransactionsRepository
       id: v4(),
       user_id,
       created_at: date,
-      amount,
+      value,
       type,
       description,
     });
