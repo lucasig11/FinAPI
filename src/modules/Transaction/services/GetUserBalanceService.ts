@@ -19,7 +19,7 @@ export default class GetUserBalanceService {
     private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute({ user_id }: IRequest): Promise<Number> {
+  public async execute({ user_id }: IRequest): Promise<number> {
     const findUser = await this.usersRepository.findByID(user_id);
 
     if (!findUser) {
