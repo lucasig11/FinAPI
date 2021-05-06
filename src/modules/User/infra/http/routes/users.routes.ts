@@ -20,4 +20,18 @@ usersRouter.post(
   usersController.create,
 );
 
+usersRouter.put(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+    },
+
+    [Segments.QUERY]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  usersController.update,
+);
+
 export default usersRouter;

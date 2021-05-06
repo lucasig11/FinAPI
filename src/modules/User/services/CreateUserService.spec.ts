@@ -38,13 +38,4 @@ describe('CreateUser', () => {
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
-
-  it('should throw error with invalid cpf', async () => {
-    await expect(
-      createUser.execute({
-        name: 'Lucas',
-        cpf: 'invalid.cpf',
-      }),
-    ).rejects.toBeInstanceOf(AppError);
-  });
 });
