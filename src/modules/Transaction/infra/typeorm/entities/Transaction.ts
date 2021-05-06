@@ -9,7 +9,7 @@ import {
 
 import User from '../../../../User/infra/typeorm/entities/User';
 
-@Entity('users')
+@Entity('transactions')
 export default class Transaction {
   @PrimaryGeneratedColumn('uuid')
   id: string;

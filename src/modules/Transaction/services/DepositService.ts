@@ -7,7 +7,7 @@ import ITransactionsRepository from '../repositories/ITransactionsRepository';
 interface IRequest {
   user_id: string;
   description: string;
-  amount: number;
+  value: number;
 }
 
 @injectable()
@@ -15,6 +15,7 @@ export default class DepositService {
   constructor(
     @inject('TransactionsRepository')
     private transactionsRepository: ITransactionsRepository,
+
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
   ) {}
@@ -22,7 +23,7 @@ export default class DepositService {
   public async execute({
     user_id,
     description,
-    amount,
+    value,
   }: IRequest): Promise<Transaction> {
     const findUser = await this.usersRepository.findByID(user_id);
 
@@ -33,7 +34,7 @@ export default class DepositService {
     const transaction = await this.transactionsRepository.create({
       user_id,
       description,
-      amount,
+      value,
       type: 'credit',
     });
 

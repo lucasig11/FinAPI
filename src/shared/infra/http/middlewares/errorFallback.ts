@@ -13,6 +13,7 @@ export default function errorFallback(
       message: err.message,
     });
   }
+  console.log(err);
   return response.status(500).json({
     status: 'error',
     message: 'Internal server error.',
