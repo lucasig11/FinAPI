@@ -17,9 +17,6 @@ export default class User {
   @Column()
   cpf: string;
 
-  @Column('text', { array: true, default: '[]' })
-  statement: string[];
-
   @CreateDateColumn()
   created_at: Date;
 
