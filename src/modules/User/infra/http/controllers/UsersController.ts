@@ -3,8 +3,7 @@ import { container } from 'tsyringe';
 
 import CreateUserService from '@modules/User/services/CreateUserService';
 import UpdateUserService from '@modules/User/services/UpdateUserService';
-import { validate } from 'uuid';
-import AppError from '@shared/errors/AppError';
+import DeleteUserService from '@modules/User/services/DeleteUserService';
 
 export default class UsersControllers {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -34,5 +33,19 @@ export default class UsersControllers {
     });
 
     return response.status(201).json(user);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const {
+      query: { id },
+    } = request;
+
+    const deleteUserService = container.resolve(DeleteUserService);
+
+    await deleteUserService.execute({
+      id: id?.toString(),
+    });
+
+    return response.status(204).json();
   }
 }

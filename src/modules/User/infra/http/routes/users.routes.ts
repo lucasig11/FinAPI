@@ -34,4 +34,14 @@ usersRouter.put(
   usersController.update,
 );
 
+usersRouter.delete(
+  '/',
+  celebrate({
+    [Segments.QUERY]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  usersController.delete,
+);
+
 export default usersRouter;
