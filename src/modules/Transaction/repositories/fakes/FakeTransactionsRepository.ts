@@ -31,6 +31,7 @@ export default class FakeTransactionsRepository
   }
 
   public async create({
+    user_id,
     amount,
     type,
     description,
@@ -39,13 +40,14 @@ export default class FakeTransactionsRepository
     const date = new Date();
     date.setHours(0, 0, 0, 0);
 
-    Object.assign(
-      transaction,
-      { id: v4() },
-      {
-        created_at: date,
-      },
-    );
+    Object.assign(transaction, {
+      id: v4(),
+      user_id,
+      created_at: date,
+      amount,
+      type,
+      description,
+    });
 
     this.transactionsRepository.push(transaction);
 
