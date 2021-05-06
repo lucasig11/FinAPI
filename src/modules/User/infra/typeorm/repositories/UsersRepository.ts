@@ -1,9 +1,9 @@
-import { getRepository, Repository } from "typeorm";
+import { getRepository, Repository } from 'typeorm';
 
-import IUsersRepository from "@modules/User/repositories/IUsersRepository";
-import ICreateUserDTO from "@modules/User/dtos/ICreateUserDTO";
+import IUsersRepository from '@modules/User/repositories/IUsersRepository';
+import ICreateUserDTO from '@modules/User/dtos/ICreateUserDTO';
 
-import User from "../entities/User";
+import User from '../entities/User';
 
 export default class UsersRepository implements IUsersRepository {
   private ormRepository: Repository<User>;
@@ -19,13 +19,19 @@ export default class UsersRepository implements IUsersRepository {
   }
 
   public async findByCPF(cpf: string): Promise<User | undefined> {
-    const findUser = await this.ormRepository.findOne(cpf);
+    const findUser = await this.ormRepository.findOne({
+      where: { cpf },
+    });
 
     return findUser;
   }
 
-  public async create(userData: ICreateUserDTO): Promise<User> {
-    const user = this.ormRepository.create(userData);
+  public async create({ name, cpf }: ICreateUserDTO): Promise<User> {
+    const user = this.ormRepository.create({
+      name,
+      cpf,
+      statement: [],
+    });
 
     await this.ormRepository.save(user);
 

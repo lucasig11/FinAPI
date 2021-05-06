@@ -4,11 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-} from "typeorm";
+} from 'typeorm';
 
-@Entity("users")
+@Entity('users')
 export default class User {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -17,7 +17,7 @@ export default class User {
   @Column()
   cpf: string;
 
-  @Column("text", { array: true, default: "{}" })
+  @Column('text', { array: true, default: '[]' })
   statement: string[];
 
   @CreateDateColumn()
