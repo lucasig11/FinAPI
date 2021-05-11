@@ -25,7 +25,7 @@ This project was developed using the following technologies:
 
 ## 💻 Project
 
-This project is a tiny financial API, with routes for creating, updating and deleting users as well as for banking operations as withdrawals, deposits, get the account balance and list it's statement. It was developed following the [constraints](#-constraints) provided by the eponymous project made in [Rocketseat](https://github.com/rocketseat-education)'s Ignite course.
+This project is a tiny financial API, with routes for creating, updating and deleting users as well as for banking operations as withdrawals, deposits, get the account balance and list it's statement. It was developed following the [constraints](#-constraints) provided by the eponymous project made in the first week of [Rocketseat](https://github.com/rocketseat-education)'s Ignite course.
 
 ## 🚀 Run
 
